@@ -1,0 +1,19 @@
+class Solution:
+    def maxOperations(self, nums: List[int], k: int) -> int:
+        count = Counter(nums)
+        ops = 0
+        for key, val in count.items():
+            if k - key  in count:
+                if k - key == key :
+                    tmp = count[key] // 2
+                    ops += tmp
+                    count[key] -= 2 * tmp
+                else:
+                    curr = min(count[key], count[k - key])
+                    if curr > 0:
+                        ops += curr
+                        count[key] -= curr
+                        count[k - key] -= curr
+        return ops
+
+        
