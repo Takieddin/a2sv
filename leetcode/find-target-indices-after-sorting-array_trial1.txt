@@ -1,0 +1,20 @@
+class Solution:
+    def targetIndices(self, nums: List[int], target: int) -> List[int]:
+        res = []
+        idx = 0
+        after = []
+        for num in nums:
+            if num > target:
+                continue
+            if num == target:
+                res.append(idx)
+                after.append(0)
+            if num < target:
+                if after:
+                    after[-1] += 1
+            idx += 1
+        for i in range(len(after) - 2, -1, -1):
+            after[i] += after[ i + 1]
+        return [after[i] + res[i] for i in range(len(after))]
+
+        
