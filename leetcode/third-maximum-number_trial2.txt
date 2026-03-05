@@ -1,0 +1,26 @@
+class Solution:
+    def thirdMax(self, nums: List[int]) -> int:
+        first = sec = third = float("-inf")
+        arr = list(set(nums)) 
+        flag = False
+        for num in arr :
+            if num > first:
+                tmp = first
+                first = num
+            else:
+                tmp = num
+            if tmp > sec:
+                tmp2 = sec
+                sec = tmp
+            else:
+                tmp2 = tmp
+            if  tmp2 > third:
+                third = tmp2
+                flag = True 
+        return third if flag else first
+               
+            
+
+                
+            
+        
