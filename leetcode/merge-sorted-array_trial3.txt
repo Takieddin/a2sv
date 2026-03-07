@@ -1,0 +1,33 @@
+class Solution:
+    def merge(self, nums1: List[int], m: int, nums2: List[int], n: int) -> None:
+        """
+        Do not return anything, modify nums1 in-place instead.
+        """
+        if n == 0:
+            return
+        for i in range(m + n -1, n - 1 , -1):
+            nums1[i] = nums1[i - n]
+        p1 = n
+        p2 = 0
+        for idx in range(n + m):
+            if  p1 >= n + m:
+                next1 = +inf
+            else:
+                next1 = nums1[p1]
+            if p2 >= n:
+                next2 = +inf
+            else:
+                next2 = nums2[p2]
+            next_num = min(next1, next2)
+            if next1 <= next2:
+                p1 += 1
+            else:
+                p2 += 1
+            nums1[idx] = next_num
+            
+
+
+
+
+            
+        
