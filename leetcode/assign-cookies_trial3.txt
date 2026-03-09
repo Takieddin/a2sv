@@ -1,0 +1,31 @@
+class Solution:
+    def findContentChildren(self, g: List[int], s: List[int]) -> int:
+        g.sort()
+        s.sort()
+        p1, p2 = 0, 0
+        res = 0
+        while p1 < len(g):
+            gg = g[p1]
+            found = False
+            while  s and p2 < len(s):
+                if s[p2] < gg:
+                    p2 += 1
+                else:
+                    found = True
+                    p2 += 1
+                    break
+            if not found:
+                break
+            p1 += 1
+            
+
+                    
+                
+            
+        return p1 
+
+            
+
+
+        
+        
