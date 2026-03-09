@@ -1,0 +1,22 @@
+class Solution:
+    def findRelativeRanks(self, score: List[int]) -> List[str]:
+        res = [""] * len(score)
+        hmap = {}
+        for i in range(len(score)):
+            hmap[score[i]] = i
+        score.sort(reverse = True)
+        for i  in range(len(score)):
+            mark = ""
+            if i == 0:
+                mark = "Gold Medal"
+            elif i == 1:
+                mark = "Silver Medal"
+            elif i == 2:
+                mark = "Bronze Medal"
+            else:
+                mark = str(i + 1)
+
+            
+            res[hmap[score[i]]] = mark
+        return res
+        
