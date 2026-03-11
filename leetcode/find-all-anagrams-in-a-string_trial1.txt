@@ -1,0 +1,34 @@
+class Solution:
+    def findAnagrams(self, s: str, p: str) -> List[int]:
+        pctr = {}
+        window = {}
+        res = []
+        abc = "abcdefghijklmnopqrstuvwxyz"
+        for l in abc:
+            window[l] = 0
+            pctr[l] = 0
+        eq = 26
+        for l in p:
+            pctr[l] += 1
+            if pctr[l] == window[l] + 1:
+                eq -= 1
+        l = 0
+        for r in range(len(s)):
+            window[s[r]] += 1
+            if window[s[r]] == pctr[s[r]]:
+                eq += 1
+            elif window[s[r]] == pctr[s[r]] + 1:
+                eq -= 1
+            while r - l + 1 > len(p):
+                window[s[l]] -= 1
+                if window[s[l]] == pctr[s[l]]:
+                    eq += 1
+                elif window[s[l]] == pctr[s[l]] - 1:
+                    eq -= 1
+                l += 1
+            if eq == 26:
+                res.append(l)
+        return res
+
+
+        
