@@ -1,0 +1,39 @@
+class Solution:
+    def minWindow(self, s: str, t: str) -> str:
+        tmap = Counter(t)
+        wmap = {}
+        missing = len(tmap)
+        res = ""
+        start = 0
+        end = len(s) - 1
+
+        reslen = +inf
+        l = 0
+        for r in range(len(s)):
+            let = s[r]
+            wmap[let] = wmap.get(let, 0) + 1
+            if wmap[let] == tmap[let]:
+                missing -= 1
+            if missing == 0:
+                if reslen > r - l + 1:
+                    reslen = r - l + 1
+                    end = r
+                    start = l
+            while l < r and missing == 0:
+                let2 = s[l]
+                wmap[let2] = wmap.get(let2, 0) - 1
+                l += 1
+                if wmap[let2] == tmap[let2] - 1:
+                    missing += 1
+                if missing == 0:
+                    if reslen > r - l + 1:
+                        reslen = r - l + 1
+                        start = l
+                        end = r
+        return s[start: end + 1]if reslen != +inf else ""
+                
+
+
+
+
+        
