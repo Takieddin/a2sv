@@ -1,0 +1,16 @@
+class Solution:
+    def maxScore(self, cardPoints: List[int], k: int) -> int:
+        curr = sum(cardPoints[:k])
+        res = curr
+        left = k - 1
+        right = len(cardPoints) - 1
+
+        while left >= 0:
+            curr -= cardPoints[left]
+            curr += cardPoints[right]
+            left -= 1
+            right -= 1
+            res = max(res, curr)
+        return res
+
+        
