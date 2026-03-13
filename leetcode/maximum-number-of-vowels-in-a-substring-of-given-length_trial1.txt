@@ -1,0 +1,18 @@
+class Solution:
+    def maxVowels(self, s: str, k: int) -> int:
+        vl = "aeiou"
+        res = 0
+        curr = 0
+        l = 0
+        for r in range(len(s)):
+            if s[r] in vl:
+                curr += 1
+            while r - l + 1 > k:
+                if s[l] in vl:
+                    curr -= 1
+                l += 1
+
+            if r - l + 1 == k:
+                res = max(res, curr)
+        return res
+        
