@@ -1,0 +1,22 @@
+class Solution:
+    def maximumUniqueSubarray(self, nums: List[int]) -> int:
+        res = 0
+        l = 0
+        window = {}
+        curr = 0
+        for r in range(len(nums)):
+            num = nums[r]
+            if num not in window:
+                curr += num
+            else:
+                while l <= window[num]:
+                    curr -= nums[l]
+                    l += 1
+                curr += num
+            res = max(res, curr)
+            window[num] = r
+        return res
+            
+
+            
+                
