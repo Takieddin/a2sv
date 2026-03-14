@@ -1,0 +1,12 @@
+class Solution:
+    def checkInclusion(self, s1: str, s2: str) -> bool:
+        n1, n2 = len(s1), len(s2)
+        m1 = Counter(s1)
+
+        for r in range(n1, n2+1):
+            m2 = Counter(s2[r - n1: r ])
+            if m1 == m2:
+                return True
+        return False
+
+        
