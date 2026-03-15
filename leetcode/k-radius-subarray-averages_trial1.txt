@@ -1,0 +1,23 @@
+class Solution:
+    def getAverages(self, nums: List[int], k: int) -> List[int]:
+        n = len(nums)
+        res = [-1] * n
+        left = 0
+        right = 2 * k 
+        center = k
+        if n <= right:
+            return res
+        k_radius_sum = sum(nums[left: right + 1])
+        res[center] = k_radius_sum // (2 * k + 1)
+        i = right + 1
+        while i < n:
+            k_radius_sum += nums[i]
+            k_radius_sum -= nums[left]
+            left += 1
+            center += 1
+            res[center] = k_radius_sum // (2 * k + 1)
+            i += 1
+        return res
+        
+        
+        
