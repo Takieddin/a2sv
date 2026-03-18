@@ -1,0 +1,5 @@
+class Solution:
+    def runningSum(self, nums: List[int]) -> List[int]:
+        r = 0
+        return [ r := r + num for num in nums ]
+        
