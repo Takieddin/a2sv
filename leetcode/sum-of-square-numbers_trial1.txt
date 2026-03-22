@@ -1,0 +1,8 @@
+class Solution:
+    def judgeSquareSum(self, c: int) -> bool:
+        for a in range(int(sqrt(c)) + 1):
+            b2 = c - a * a
+            if sqrt(b2) == int(sqrt(b2)) :
+                return True
+        return False 
+        
