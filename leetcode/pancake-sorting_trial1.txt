@@ -1,0 +1,24 @@
+class Solution:
+    def pancakeSort(self, arr: List[int]) -> List[int]:
+        n = len(arr)
+        last = n 
+        res = []
+        while last > 0:
+            max_num = arr[0]
+            idx = 0
+            for i in range(last):
+                if arr[i] > max_num:
+                    max_num = arr[i]
+                    idx = i
+            if idx != last - 1:
+                if idx > 0:
+                    res.append(idx + 1)
+                    arr[:idx + 1] = arr[:idx + 1][::-1]
+                arr[:last] = arr[:last][::-1]
+                res.append(last)
+            last -= 1
+        return res
+
+
+
+        
