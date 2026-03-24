@@ -1,0 +1,28 @@
+class Solution:
+    def compress(self, chars: List[str]) -> int:
+        write_ptr = 0
+        read_ptr = 0
+        prev_char = None
+        length = 0
+        n = len(chars)
+        while read_ptr <= len(chars):
+            if not prev_char:
+                prev_char = chars[read_ptr]
+                length = 0
+            elif read_ptr == n or chars[read_ptr] != prev_char:
+                chars[write_ptr] = prev_char
+                write_ptr += 1
+                prev_char = chars[min(n - 1 ,read_ptr)]
+                if length > 1:
+                    for c in str(length):
+                        chars[min(n-1, write_ptr)] = c
+                        write_ptr += 1
+                length = 0
+            length += 1
+            read_ptr += 1
+        return write_ptr
+                
+
+
+
+        
