@@ -1,0 +1,21 @@
+class Solution:
+    def duplicateZeros(self, arr: List[int]) -> None:
+        """
+        Do not return anything, modify arr in-place instead.
+        """
+        zeros = sum([1 if num == 0 else 0 for num in arr])
+        n = len(arr)
+
+        ptr = n - 1
+        while zeros > 0:
+            if arr[ptr] == 0:
+                zeros -= 1
+            if ptr + zeros  < n:
+                arr[ptr + zeros] = arr[ptr]
+                if arr[ptr] == 0:
+                    arr[min(n - 1, ptr + zeros + 1)] = 0
+
+            ptr -= 1
+
+
+        
