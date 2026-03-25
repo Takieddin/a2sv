@@ -1,0 +1,30 @@
+class Solution:
+    def totalFruit(self, fruits: List[int]) -> int:
+        res = 0
+        baskets = {}
+        n = len(fruits)
+        l = 0
+        for r in range(n):
+            if fruits[r] not in baskets:
+                if len(baskets) >= 2:
+                    to_del = +inf
+                    to_del_idx = +inf
+                    for k, v in baskets.items():
+                        if v < to_del_idx:
+                            to_del_idx = v
+                            to_del = k
+                    del baskets[to_del]
+                    l = to_del_idx + 1
+                baskets[fruits[r]] = r
+
+            else:
+                baskets[fruits[r]] = r
+
+                    
+
+            
+            res = max(res, r - l + 1)
+            
+
+        return res
+        
