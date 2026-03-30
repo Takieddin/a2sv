@@ -1,0 +1,10 @@
+class Solution:
+    def removeElement(self, nums: List[int], val: int) -> int:
+        next_num, next_pos = 0, 0
+        while next_num < len(nums):
+            if nums[next_num] != val:
+                nums[next_pos] = nums[next_num]
+                next_pos += 1
+            next_num += 1
+        return next_pos 
+        
