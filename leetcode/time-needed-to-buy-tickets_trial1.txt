@@ -1,0 +1,14 @@
+class Solution:
+    def timeRequiredToBuy(self, tickets: List[int], k: int) -> int:
+        need_to_buy = tickets[k]
+        time = 0
+        i = 0
+        while need_to_buy:
+            if tickets[i]:
+                tickets[i] -= 1
+                time += 1
+                if i == k:
+                    need_to_buy -= 1
+
+            i = (i + 1 ) % len(tickets)
+        return time
