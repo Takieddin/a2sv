@@ -1,0 +1,10 @@
+class Solution:
+    def carFleet(self, target: int, position: List[int], speed: List[int]) -> int:
+        arr = [ [position[i], speed[i]] for i in range(len(speed))]
+        arr.sort(reverse = True)
+        res = []
+        for p, s in arr:
+            time = (target - p ) / s
+            if not res or res[-1] < time:
+                res.append(time)
+        return len(res)      
