@@ -1,0 +1,15 @@
+class Solution:
+    def getRow(self, rowIndex: int) -> List[int]:
+        memo = [[ -1] * (rows + 1) for rows in range(rowIndex + 1) ]
+        def fill(r,c):
+            if c <= 0 or c == r:
+                memo[r][c] = 1
+                return 1
+            if memo[r][c] != -1:
+                return memo[r][c]
+            memo[r][c] =  fill(r - 1, c) + fill(r - 1, c - 1)
+            return memo[r][c]
+        for i in range( rowIndex + 1):
+            fill(rowIndex, i)
+        return memo[-1]
+        
