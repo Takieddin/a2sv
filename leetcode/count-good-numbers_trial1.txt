@@ -1,0 +1,16 @@
+class Solution:
+    def countGoodNumbers(self, n: int) -> int:
+        mod = 10 ** 9 + 7
+        memo = {}
+        memo[0] = 1
+        def pow(x,y):
+            if y == 1:
+                return x 
+            if y in memo:
+                return memo[y]
+            res = pow(x, y// 2) ** 2 * pow(x, y%2) % mod
+            return res
+
+
+
+        return (pow(5, (n + 1) // 2) * pow(4, (n // 2) )) % mod
