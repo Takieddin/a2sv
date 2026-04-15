@@ -1,0 +1,37 @@
+class Solution:
+    def decodeString(self, s: str) -> str:
+        
+
+        def decode(l,r):
+            res = ""
+            k = ""
+            nextl = -1
+            nextr = -1
+            stack = 0
+            for i in range(l, r + 1): 
+                ch = s[i]
+                if ch.isalpha():
+                    if stack == 0:
+                        res += ch
+                elif ch.isdigit():
+                    if stack == 0:
+                        k += ch
+                elif ch == "[":
+                    if stack == 0:
+                        nextl = i + 1
+                    stack -=1
+                else:
+                    stack += 1
+                    if stack == 0:
+                        nextr = i - 1
+                    k = int(k) if k else 1
+                    tmp = decode(nextl, nextr)
+                    res += tmp * k
+                    if stack == 0:
+                        k = ""
+                
+            return res
+        return decode(0, len(s) - 1)
+
+
+        
