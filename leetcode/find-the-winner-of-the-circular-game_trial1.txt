@@ -1,0 +1,28 @@
+class Node:
+    def __init__(self, val, nxt = None,prv= None):
+        self.val = val
+        self.nxt = nxt
+        self.prv = prv
+
+
+class Solution:
+    def findTheWinner(self, n: int, k: int) -> int:
+        head = Node(1)
+        tmp = head
+        for i in range(1, n):
+            tmp.next = Node(i+1,None, tmp)
+            tmp = tmp.next
+        tmp.next = head
+        head.prv = tmp
+        def play(ptr):
+            if ptr.next == ptr:
+                return ptr.val
+            tmp = ptr
+            for i in range(k - 1):
+                tmp = tmp.next
+            tmp.prv.next = tmp.next
+            tmp.next.prv = tmp.prv
+            return play(tmp.next)
+        return play(head)
+
+        
