@@ -1,0 +1,10 @@
+class Solution:
+    def clearDigits(self, s: str) -> str:
+        def rec(w):
+            for i in range(1,len(w)):
+                if w[i].isdigit() and w[i - 1].isalpha():
+                    return rec(w[:i - 1] + w[i + 1:])
+            return w
+        return rec(s)
+
+        
