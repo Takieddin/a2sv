@@ -1,0 +1,29 @@
+class Solution:
+    def asteroidCollision(self, ast: List[int]) -> List[int]:
+        path = []
+        def rec(i):
+            if i < len(ast):
+                if ast[i] > 0 :
+                    path.append(ast[i])
+                    return rec(i + 1)
+                else:
+                    while path :
+                        if path[-1] > 0:
+                            if abs(ast[i]) > path[-1]:
+                                path.pop()
+                            elif path[-1] == abs(ast[i]):
+                                path.pop()
+                                return rec( i + 1)
+                            else:
+                                return rec( i + 1)
+                                
+                        else:
+                            path.append(ast[i])
+                            break
+                    if not path:
+                        path.append(ast[i])
+                return rec( i + 1)
+        rec(0)
+        return path
+
+
