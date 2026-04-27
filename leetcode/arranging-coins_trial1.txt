@@ -1,0 +1,20 @@
+class Solution:
+    def arrangeCoins(self, n: int) -> int:
+        def coins(r):
+            return (r - 1) * r // 2 + r
+        res = 0
+        
+        low, high = 1, n // 2 + 1
+        while low <= high:
+            mid = (low + high) // 2
+            if coins(mid) == n:
+                return mid
+            if coins(mid) < n:
+                low = mid + 1
+                res = max(res, mid)
+            else:
+                high = mid - 1
+        return res
+
+
+        
